@@ -37,6 +37,8 @@ module.exports = {
                 aulas.forEach(aula => {
                     curso.aulas.push(aula);
                 })
+
+                curso.ultimaAtualizacao = curso.handleDate(new Date());
             }
         })
     },

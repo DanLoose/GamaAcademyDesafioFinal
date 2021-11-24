@@ -30,18 +30,22 @@ criarCurso(
 console.log('Exibindo os dados do curso de id 1');
 exibirCurso(1);
 
-console.log('Atualizando os dados do curso de id 1 ... ');
-atualizarCurso(
-    1,
-    'Gama Academy 2.0',
-    'Curso de desenvolvimento front-end master',
-    'imagem ainda nao definida',
-    'Danilo Loose',
-    ['aula1', 'aula2']
-);
+setTimeout(() => {
 
-console.log('Exibindo os dados do curso de id 1 agora atualizados');
-exibirCurso(1);
+    console.log('Atualizando os dados do curso de id 1 ... ');
+    atualizarCurso(
+        1,
+        'Gama Academy 2.0',
+        'Curso de desenvolvimento front-end master',
+        'imagem ainda nao definida',
+        'Danilo Loose',
+        ['aula1', 'aula2']
+    );
+
+    console.log('Exibindo os dados do curso de id 1 agora atualizados');
+    exibirCurso(1);
+}, 3000)
+
 
 console.log('\n ------------------------------------------------------------------------------ \n');
 

@@ -11,19 +11,21 @@ module.exports = class Curso {
         aulas.forEach(aula => this.aulas.push(aula));
 
         // Armazena o momento de criação do curso em formato hh:mm:ss - dd/mm/aaaa
-        this.dataDeCriação = handleDate(new Date());
+        this.dataDeCriacao = this.handleDate(new Date());
+        this.ultimaAtualizacao = this.dataDeCriacao;
     }
-}
 
-function handleDate(date) {
+    handleDate(date) {
 
-    let hora = JSON.stringify(date.getHours()).padStart(2, '0');
-    let minutos = JSON.stringify(date.getMinutes()).padStart(2, '0');
-    let segundos = JSON.stringify(date.getSeconds()).padStart(2, '0');
+        let hora = JSON.stringify(date.getHours()).padStart(2, '0');
+        let minutos = JSON.stringify(date.getMinutes()).padStart(2, '0');
+        let segundos = JSON.stringify(date.getSeconds()).padStart(2, '0');
 
-    let dia = JSON.stringify(date.getDate()).padStart(2, '0');
-    let mes = JSON.stringify(date.getMonth()).padStart(2, '0');
-    let ano = JSON.stringify(date.getFullYear());
+        let dia = JSON.stringify(date.getDate()).padStart(2, '0');
+        let mes = JSON.stringify(date.getMonth()).padStart(2, '0');
+        let ano = JSON.stringify(date.getFullYear());
 
-    return `${hora}:${minutos}:${segundos} - ${dia}/${mes}/${ano}`
+        return `${hora}:${minutos}:${segundos} - ${dia}/${mes}/${ano}`
+    }
+
 }
