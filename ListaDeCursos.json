@@ -1,28 +1,16 @@
 [
     {
         "id": 1,
-        "titulo": "GamaAcademy",
-        "descricao": "Curso de desenvolvimento front-end",
+        "titulo": "Gama Academy 2.0",
+        "descricao": "Curso de desenvolvimento front-end master",
         "imagem": "imagem ainda nao definida",
-        "professor": "Danilo",
+        "professor": "Danilo Loose",
         "aulas": [
             "aula1",
             "aula2"
         ],
-        "dataDeCriacao": "10:54:12 - 25/10/2021",
-        "ultimaAtualizacao": "10:54:12 - 25/10/2021"
-    },
-    {
-        "id": 2,
-        "titulo": "DevWeb",
-        "descricao": "Curso de desenvolvimento fullstack",
-        "imagem": "imagem ainda nao definida",
-        "professor": "Dan",
-        "aulas": [
-            "aula1"
-        ],
-        "dataDeCriacao": "10:54:12 - 25/10/2021",
-        "ultimaAtualizacao": "10:54:12 - 25/10/2021"
+        "dataDeCriacao": "11:35:12 - 25/10/2021",
+        "ultimaAtualizacao": "11:35:15 - 25/10/2021"
     },
     {
         "id": 3,
@@ -36,7 +24,7 @@
             "aula3",
             "aula4"
         ],
-        "dataDeCriacao": "10:54:12 - 25/10/2021",
-        "ultimaAtualizacao": "10:54:12 - 25/10/2021"
+        "dataDeCriacao": "11:35:12 - 25/10/2021",
+        "ultimaAtualizacao": "11:35:12 - 25/10/2021"
     }
 ]
