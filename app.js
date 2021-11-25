@@ -1,5 +1,6 @@
 const fs = require('fs');
 const Curso = require('./Curso');
+const Lista = require('./ListaDeCursos.json');
 let minhaLista = [];
 
 module.exports = {
@@ -16,7 +17,7 @@ module.exports = {
 
     exibirCurso(id) {
         //  Procura o curso que possui o id correspondente
-        minhaLista.forEach(curso => {
+        Lista.forEach(curso => {
             if (curso.id === id) {
                 //  Imprime os dados do curso em forma de tabela
                 console.table(curso);
@@ -61,9 +62,7 @@ module.exports = {
 
     listaCursos() {
         //  Imprime, em forma de tabela, todos os cursos armazenados
-        minhaLista.forEach(curso => {
-            console.table(curso);
-        })
+        console.log(Lista);
 
     },
 }
