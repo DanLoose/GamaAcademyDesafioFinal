@@ -1,12 +1,18 @@
+const fs = require('fs');
 const Curso = require('./Curso');
 let ListaDeCursos = require('./ListaDeCursos.json');
+let minhaLista = [];
 
 module.exports = {
     criarCurso(id, titulo, descricao, imagem, professor, aulas) {
         //  Cria e armazena um novo curso no arquivo ListaDeCursos.json
-        ListaDeCursos.push(
+        minhaLista.push(
             new Curso(id, titulo, descricao, imagem, professor, aulas)
         );
+
+        fs.writeFile('./ListaDeCursos.json', JSON.stringify(minhaLista), 'utf-8', err => {
+            if (err) throw err;
+        })
     },
 
     exibirCurso(id) {

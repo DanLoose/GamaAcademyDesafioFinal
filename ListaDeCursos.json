@@ -1,1 +1,42 @@
-[]
+[
+    {
+        "id": 1,
+        "titulo": "GamaAcademy",
+        "descricao": "Curso de desenvolvimento front-end",
+        "imagem": "imagem ainda nao definida",
+        "professor": "Danilo",
+        "aulas": [
+            "aula1",
+            "aula2"
+        ],
+        "dataDeCriacao": "10:54:12 - 25/10/2021",
+        "ultimaAtualizacao": "10:54:12 - 25/10/2021"
+    },
+    {
+        "id": 2,
+        "titulo": "DevWeb",
+        "descricao": "Curso de desenvolvimento fullstack",
+        "imagem": "imagem ainda nao definida",
+        "professor": "Dan",
+        "aulas": [
+            "aula1"
+        ],
+        "dataDeCriacao": "10:54:12 - 25/10/2021",
+        "ultimaAtualizacao": "10:54:12 - 25/10/2021"
+    },
+    {
+        "id": 3,
+        "titulo": "Java",
+        "descricao": "Curso de desenvolvimento java",
+        "imagem": "imagem ainda nao definida",
+        "professor": "jao",
+        "aulas": [
+            "aula1",
+            "aula2",
+            "aula3",
+            "aula4"
+        ],
+        "dataDeCriacao": "10:54:12 - 25/10/2021",
+        "ultimaAtualizacao": "10:54:12 - 25/10/2021"
+    }
+]
