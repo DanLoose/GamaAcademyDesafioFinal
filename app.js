@@ -1,18 +1,20 @@
-const fs = require('fs');
-const Curso = require('./Curso');
-const Lista = require('./ListaDeCursos.json');
-let minhaLista = [];
+const Curso = require('./components/Curso');
+const Lista = require('./components/ListaDeCursos');
 
 module.exports = {
     criarCurso(id, titulo, descricao, imagem, professor, aulas) {
         //  Cria e armazena um novo curso no arquivo ListaDeCursos.json
-        minhaLista.push(
+
+        if (Lista.find(curso => curso.id == id)) {
+            console.log('O ID já existe, abortando...');
+            return;
+        }
+
+        Lista.push(
             new Curso(id, titulo, descricao, imagem, professor, aulas)
         );
+        console.log('Curso adicionado com sucesso! \n');
 
-        fs.writeFile('./ListaDeCursos.json', JSON.stringify(minhaLista), 'utf-8', err => {
-            if (err) throw err;
-        })
     },
 
     exibirCurso(id) {
@@ -27,7 +29,7 @@ module.exports = {
 
     atualizarCurso(id, titulo, descricao, imagem, professor, aulas) {
         // Procura o curso pelo id
-        minhaLista.forEach(curso => {
+        Lista.forEach(curso => {
             if (curso.id === id) {
                 //  Altera todos os dados do curso encontrado
                 /*  Uma versão alternativa seria excluir o curso selecionado
@@ -47,17 +49,16 @@ module.exports = {
                 curso.ultimaAtualizacao = curso.handleDate(new Date());
             }
         })
-        fs.writeFile('./ListaDeCursos.json', JSON.stringify(minhaLista), 'utf-8', err => {
-            if (err) throw err;
-        })
     },
 
     deletarCurso(id) {
         //  Lista de cursos vai receber todos os elementos que não tiverem o id do parametro, tirando-o da lista
-        minhaLista = minhaLista.filter(curso => curso.id !== id);
-        fs.writeFile('./ListaDeCursos.json', JSON.stringify(minhaLista), 'utf-8', err => {
-            if (err) throw err;
+        let pos;
+        Lista.forEach((curso, index) => {
+            if (curso.id == id) pos = index;
         })
+
+        if (pos > -1) Lista.splice(pos, 1);
     },
 
     listaCursos() {
@@ -66,3 +67,4 @@ module.exports = {
 
     },
 }
+

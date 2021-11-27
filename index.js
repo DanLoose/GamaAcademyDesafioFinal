@@ -1,61 +1,106 @@
+const readline = require('readline-sync');   //input
 const { criarCurso, exibirCurso, atualizarCurso, deletarCurso, listaCursos } = require('./app');
 
-criarCurso(
-    1,
-    'GamaAcademy',
-    'Curso de desenvolvimento front-end',
-    'imagem ainda nao definida',
-    'Danilo',
-    ['aula1', 'aula2']
-);
+const minhasOpcoes = `\nOlá, escolha uma opção: 
+a) Criar um novo Curso 
+b) Exibir um Curso existente(insira o id) 
+c) Atualizar Curso existente 
+d) Excluir um Curso existente(insira o id) 
+e) Listar todos os cursos 
+f) Sair\n`;
 
-criarCurso(
-    2,
-    'DevWeb',
-    'Curso de desenvolvimento fullstack',
-    'imagem ainda nao definida',
-    'Dan',
-    ['aula1']
-);
+console.log(minhasOpcoes);
 
-criarCurso(
-    3,
-    'Java',
-    'Curso de desenvolvimento java',
-    'imagem ainda nao definida',
-    'jao',
-    ['aula1', 'aula2', 'aula3', 'aula4']
-);
+var userInput;
+var looping = true;
+var repetir = false;
+var id, titulo, descricao, imagem, nomeProf;
+var listaAulas = [];
 
-console.log('Exibindo os dados do curso de id 1');
-exibirCurso(1);
+while (looping) {
 
-setTimeout(() => {
+    userInput = readline.question('Digite sua resposta: ');
+    userInput = userInput.toLowerCase();
+    repetir = false;
 
-    console.log('Atualizando os dados do curso de id 1 ... ');
-    atualizarCurso(
-        1,
-        'Gama Academy 2.0',
-        'Curso de desenvolvimento front-end master',
-        'imagem ainda nao definida',
-        'Danilo Loose',
-        ['aula1', 'aula2']
-    );
+    switch (userInput) {
+        case 'a':
+            //  Criar novo curso
+            console.log('Você selecionou a opção de criar um novo curso. Insira os dados do novo curso:');
+            handleInput(true, true, true, true, true, true)
+            criarCurso(id, titulo, descricao, imagem, nomeProf, listaAulas);
+            setRepetir();
+            break;
+        case 'b':
+            //Exibir Curso existente
+            console.log('Você selecionou a opção de exibir um curso existente. Insira o id do curso:');
+            handleInput(true);
+            exibirCurso(id);
+            setRepetir();
+            break;
+        case 'c':
+            //  Atualizar curso existente 
+            console.log('Você selecionou a opção de atualizar um curso. Insira o id do curso a ser modificado');
+            handleInput(true);
+            console.log('Digite as novas informações: ');
+            handleInput(false, true, true, true, true, true);
+            atualizarCurso(id, titulo, descricao, imagem, nomeProf, listaAulas);
+            setRepetir();
+            break;
+        case 'd':
+            //  Excluir curso
+            console.log('Você selecionou a opção de excluir um curso existente. Insira o ID');
+            handleInput(true);
+            deletarCurso(id);
+            setRepetir();
+            break;
+        case 'e':
+            //  Listar todos os cursos
+            console.log('Você selecionou a opção de listar todos os cursos. Estes são os cursos disponiveis: ');
+            listaCursos();
+            setRepetir();
+            break;
+        case 'f':
+            //  Sair
+            looping = false;
+            break;
+        default:
+            console.log('Opção inválida, tente novamente');
+            repetir = true;
+    }
 
-    console.log('Exibindo os dados do curso de id 1 agora atualizados');
-    exibirCurso(1);
-}, 3000)
+    if (repetir) console.log(minhasOpcoes);
+    else {
+        looping = false;
+        console.log('Saindo...');
+    }
 
+}
 
-console.log('\n ------------------------------------------------------------------------------ \n');
+function setRepetir() {
+    let op = readline.question('Quer fazer outra operacao? S/N: ');
+    if (op.toLowerCase() === 's') repetir = true;
+    else repetir = false;
+}
 
-console.log('Exibindo todos os cursos armazenados na lista de cursos');
-listaCursos();
+function handleInput(ID, TITULO, DESCRICAO, IMAGEM, NOMEPROF, LISTAAULAS) {
+    if (ID) id = readline.question('Digite o ID: ');
+    if (TITULO) titulo = readline.question('Digite o titulo do curso: ');
+    if (DESCRICAO) descricao = readline.question('Digite a Descricao do curso: ');
+    if (IMAGEM) imagem = readline.question('Digite o caminho da imagem: ');
+    if (NOMEPROF) nomeProf = readline.question('Digite o nome do professor: ');
+    if (LISTAAULAS) armazenaListaDeAulas();
+}
 
-console.log('\n ------------------------------------------------------------------------------ \n');
-
-console.log('Apagando o curso de id 2 ...');
-deletarCurso(2);
-
-console.log('Exibindo todos os cursos armazenados na lista de cursos (curso de id 2 agora apagado)');
-listaCursos();
+function armazenaListaDeAulas() {
+    listaAulas = [];
+    console.log('Digite "0" para encerrar a lista de aulas.');
+    let cont = 1;
+    let response = readline.question(`Elemento ${cont} da lista: `);
+    while (response != 0) {
+        cont++;
+        listaAulas.push(response);
+        response = readline.question(`Elemento ${cont} da lista: `);
+    }
+    console.log('Entrada de aulas encerrada');
+}
