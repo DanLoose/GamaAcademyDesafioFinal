@@ -1,50 +1,53 @@
-var minhaLista = [];
+const btnCriar = document.querySelector('#btnCriarCurso');
+const container = document.querySelector('.container');
+const btnExcluir = document.querySelector('.excluir');
 
-const containerLista = document.querySelector('.containerLista');
-const btnCriarCurso = document.querySelector('#btnCriarCurso');
-const input = document.querySelector('input[name=input]');
-
+let meusCursos = [];
 window.addEventListener('DOMContentLoaded', () => {
-    console.log(localStorage.getItem('minhaLista'));
-    renderizarTela();
+    meusCursos = localStorage.getItem('meusCursos');
+    console.log(meusCursos);
 })
 
 
-btnCriarCurso.addEventListener('click', (event) => {
-    event.preventDefault();
-    if (input.value) {
-        criarCurso();
-    }
+btnCriar.addEventListener('click', createModalCriar)
+
+btnExcluir.addEventListener('click', (e) => {
+    e.target.parentNode.parentNode.remove()
 })
 
-function renderizarTela() {
+function createModalCriar() {
+    let modalCriar, divBox, boxHeader, h3, p;
+    let inputId, inputName, inputDescricao;
 
-    let lista = createList();
+    modalCriar = document.createElement('div');
+    divBox = document.createElement('div');
+    boxHeader = document.createElement('div');
+    h3 = document.createElement('h3');
+    p = document.createElement('p');
 
-    containerLista.innerHTML = '';
+    h3.innerText = 'Criar curso';
+    p.innerText = 'FECHAR';
 
-    if (minhaLista) {
-        minhaLista.forEach(data => {
-            lista.append(createCard(data));
-        })
+    inputId = document.createElement('input');
+    inputName = document.createElement('input');
+    inputDescricao = document.createElement('input');
 
-        containerLista.innerHTML = lista;
-    }
+    modalCriar.classList.add('modalCriar');
+    divBox.classList.add('box');
+    boxHeader.classList.add('box-header');
 
-}
+    p.addEventListener('click', () => {
+        container.removeChild(modalCriar);
+    })
 
-function criarCurso() {
-    minhaLista.push(input.value);
-    localStorage.setItem('minhaLista', minhaLista);
-    renderizarTela();
-}
+    boxHeader.append(h3);
+    boxHeader.append(p);
 
-function createCard(data) {
-    let card = document.createElement('li');
-    card.append(document.createTextNode(`${data.titulo}`))
-    return card;
-}
+    divBox.append(boxHeader);
+    divBox.append(inputId);
+    divBox.append(inputName);
+    divBox.append(inputDescricao);
 
-function createList() {
-    return document.createElement('ul');
+    modalCriar.append(divBox)
+    container.append(modalCriar);
 }

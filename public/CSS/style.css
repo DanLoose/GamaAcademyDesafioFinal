@@ -1,24 +1,112 @@
 body {
     display: flex;
     justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header>button {
+    height: 30px;
 }
 
 .container {
     width: 100%;
-    max-width: 700px;
+    max-width: 1000px;
+    min-width: 800px;
 }
 
 ul {
     padding: 0;
     margin: 0;
     list-style-type: none;
-    max-width: 100%;
+    width: 100%;
+}
+
+input {
+    padding: 5px;
+    outline: none;
+    border: 1px solid black;
+}
+
+form>button {
+    padding: 5px;
+    background-color: cornflowerblue;
+    border: 1px solid black;
+}
+
+form>button:hover {
+    background-color: rgb(155, 183, 235);
 }
 
 .card {
     padding: 20px;
     border: 1px solid gray;
-    border-radius: 10px;
+    border-radius: 5px;
     margin-top: 5px;
     box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.137);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card>.content {
+    display: flex;
+    align-items: center;
+}
+
+.card>.content>.imagem {
+    width: 75px;
+    height: 75px;
+    background-color: cadetblue;
+}
+
+.card>.content>.text-content>.titulo {
+    margin-left: 25px;
+    font-size: 30px;
+}
+
+.card>.content>.text-content>.descricao,
+.card>.content>.text-content>.professor {
+    margin-left: 25px;
+}
+
+.card>.buttons>.editar,
+.card>.buttons>.excluir {
+    padding: 5px;
+    border: 1px solid gray;
+    margin-top: 5px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modalCriar {
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.219);
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalCriar>.box {
+    max-width: 500px;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0px 1px 1px 1px rgba(128, 128, 128, 0.212);
+    border-radius: 5px;
+}
+
+.box-header {
+    display: flex;
+    justify-content: space-between;
 }

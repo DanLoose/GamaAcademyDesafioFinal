@@ -12,14 +12,32 @@
 <body>
     <div class="container">
 
-        <h1>Todos os cursos</h1>
+        <div class="header">
+            <h1>Todos os cursos</h1>
+            <button id="btnCriarCurso">Criar novo curso</button>
+        </div>
 
         <form action="">
-            <input type="text" name="input" id="" placeholder="Nome do Curso">
-            <button id="btnCriarCurso">Criar novo curso</button>
+            <input type="text" name="input" id="" placeholder="Pesquisar">
+            <button>Buscar</button>
         </form>
 
         <ul class="containerLista">
+            <li class="card">
+                <div class="content">
+                    <div class="imagem"></div>
+                    <div class="text-content">
+                        <div class="titulo">Gama Academy - HSM Coders</div>
+                        <div class="descricao"> Curso de desenvolvimento frond-end. Material de React disponível +
+                            certidicados.</div>
+                        <div class="professor"> Gilberto da Silva Arramindo</div>
+                    </div>
+                </div>
+                <div class="buttons">
+                    <div class="excluir">excluir</div>
+                    <div class="editar">editar</div>
+                </div>
+            </li>
         </ul>
     </div>
 
