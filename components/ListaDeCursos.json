@@ -1,0 +1,29 @@
+[
+    {
+        "id": "1",
+        "titulo": "HSM Coders - Desenvolvimento Web",
+        "descricao": "Aprenda desenvolvimento web gratuitamente e comece a trabalhar com isso.",
+        "imagem": "Sem imagens",
+        "professor": "J�o Pedro da Silva",
+        "aulas": [
+            "www.algumaaula.com",
+            "www.outraaula.com"
+        ],
+        "dataDeCriacao": "19: 53: 50 - 28/10/2021",
+        "ultimaAtualizacao": "19: 53: 50 - 28/10/2021"
+    },
+    {
+        "id": "2",
+        "titulo": "Curso tal tal tal",
+        "descricao": "Você aprenderá a programar a linguagem X e receberá um certificado.",
+        "imagem": "alguma imagem aqui",
+        "professor": "Fulano Beltrano da Silva",
+        "aulas": [
+            "www.algumaaula.com",
+            "www.outraaula.com",
+            "www.ultimaaula.com"
+        ],
+        "dataDeCriacao": "19: 40: 50 - 28/10/2021",
+        "ultimaAtualizacao": "19: 53: 20 - 28/10/2021"
+    }
+]

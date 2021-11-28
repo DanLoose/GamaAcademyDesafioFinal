@@ -1,5 +1,11 @@
 const Curso = require('./components/Curso');
 const Lista = require('./components/ListaDeCursos');
+const bd = require('./components/ListaDeCursos.json');
+
+//  Inicia o programa com os dados armazenados no banco de dados (ListaDeCursos.json)
+bd.forEach(curso => {
+    Lista.push(curso);
+})
 
 module.exports = {
     criarCurso(id, titulo, descricao, imagem, professor, aulas) {
