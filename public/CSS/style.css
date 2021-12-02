@@ -4,7 +4,17 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.container {
+    width: 100%;
+    max-width: 1000px;
+    min-width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .header {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -14,11 +24,6 @@ body {
     height: 30px;
 }
 
-.container {
-    width: 100%;
-    max-width: 1000px;
-    min-width: 800px;
-}
 
 ul {
     padding: 0;
@@ -27,10 +32,13 @@ ul {
     width: 100%;
 }
 
-input {
-    padding: 5px;
+.container>form>input {
+    width: 400px;
+    padding: 10px;
     outline: none;
     border: 1px solid black;
+    margin: 10px;
+    border-radius: 5px;
 }
 
 form>button {
@@ -100,13 +108,36 @@ form>button:hover {
 
 .modalCriar>.box {
     max-width: 500px;
+    width: 100%;
     background-color: white;
     padding: 20px;
     box-shadow: 0px 1px 1px 1px rgba(128, 128, 128, 0.212);
     border-radius: 5px;
+    display: flex;
+    flex-direction: column;
 }
 
 .box-header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+
+.box-header>p {
+    padding: 5px;
+}
+
+.box-header>p:hover {
+    background-color: cadetblue;
+}
+
+
+.box-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.box-content>* {
+    margin-top: 5px;
 }

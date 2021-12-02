@@ -1,6 +1,11 @@
 const btnCriar = document.querySelector('#btnCriarCurso');
 const container = document.querySelector('.container');
 const containerCursos = document.querySelector('.containerLista');
+const pesquisar = document.querySelector('input[name=input]');
+
+pesquisar.addEventListener('input', (e) => {
+    render(e.target.value);
+})
 
 var meusCursos = [];
 window.addEventListener('DOMContentLoaded', () => {
@@ -14,12 +19,13 @@ window.addEventListener('DOMContentLoaded', () => {
 btnCriar.addEventListener('click', createModalCriar)
 
 function createModalCriar() {
-    let modalCriar, divBox, boxHeader, h3, p;
+    let modalCriar, divBox, boxHeader, boxContent, h3, p;
     let inputId, inputName, inputDescricao, btnCriarCurso;
 
     modalCriar = document.createElement('div');
     divBox = document.createElement('div');
     boxHeader = document.createElement('div');
+    boxContent = document.createElement('div');
     h3 = document.createElement('h3');
     p = document.createElement('p');
 
@@ -31,6 +37,15 @@ function createModalCriar() {
     inputDescricao = document.createElement('textarea');
     btnCriarCurso = document.createElement('button');
 
+    inputId.value = generateId();
+    inputId.setAttribute('disabled', 'disabled');
+    inputName.setAttribute('placeholder', 'Nome do curso');
+    inputDescricao.setAttribute('placeholder', 'Descrição');
+    inputDescricao.setAttribute('rows', 7);
+    inputDescricao.style.resize = 'none';
+    inputDescricao.style.overflow = 'auto';
+    btnCriarCurso.innerText = 'Criar';
+
     btnCriarCurso.addEventListener('click', () => {
         criarCurso(inputId, inputName, inputDescricao);
     });
@@ -38,19 +53,22 @@ function createModalCriar() {
     modalCriar.classList.add('modalCriar');
     divBox.classList.add('box');
     boxHeader.classList.add('box-header');
+    boxContent.classList.add('box-content');
 
     p.addEventListener('click', () => {
         container.removeChild(modalCriar);
     })
 
+    boxContent.append(inputId);
+    boxContent.append(inputName);
+    boxContent.append(inputDescricao);
+    boxContent.append(btnCriarCurso);
+
     boxHeader.append(h3);
     boxHeader.append(p);
 
     divBox.append(boxHeader);
-    divBox.append(inputId);
-    divBox.append(inputName);
-    divBox.append(inputDescricao);
-    divBox.append(btnCriarCurso);
+    divBox.append(boxContent);
 
     modalCriar.append(divBox)
     container.append(modalCriar);
@@ -74,14 +92,29 @@ function criarCurso(inputId, inputName, inputDescricao) {
     render();
 }
 
-function render() {
-    meusCursos = meusCursos;
+function render(data) {
     containerCursos.innerHTML = '';
+    let cont = 0;
+
     meusCursos.forEach(curso => {
 
-        containerCursos.appendChild(createCard(curso.titulo, curso.descricao));
-
+        if (data) {
+            let input = data.toLowerCase();
+            let tituloLower = curso.titulo.toLowerCase();
+            if (tituloLower.includes(input)) {
+                containerCursos.appendChild(createCard(curso.titulo, curso.descricao));
+                cont++;
+            }
+        }
+        else {
+            cont++;
+            containerCursos.appendChild(createCard(curso.titulo, curso.descricao));
+        }
     })
+
+    if (cont == 0) {
+        containerCursos.innerText = 'Nenhum curso encontrado.';
+    }
 }
 
 function createCard(TITULO, DESCRICAO) {
@@ -148,3 +181,6 @@ function createCard(TITULO, DESCRICAO) {
 }
 
 
+function generateId() {
+    return Math.floor(Math.random() * 15000);
+}
