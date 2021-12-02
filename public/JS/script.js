@@ -1,79 +1,28 @@
+// Inicialização de variáveis
 const btnCriar = document.querySelector('#btnCriarCurso');
 const container = document.querySelector('.container');
 const containerCursos = document.querySelector('.containerLista');
 const pesquisar = document.querySelector('input[name=input]');
-
-pesquisar.addEventListener('input', (e) => {
-    render(e.target.value);
-})
-
 var meusCursos = [];
+
+//  Inicialização da página
 window.addEventListener('DOMContentLoaded', () => {
     if (localStorage.getItem('meusCursos')) {
         meusCursos = JSON.parse(localStorage.getItem('meusCursos'));
     }
     render();
-})
+});
 
+//  Event Listeners
+btnCriar.addEventListener('click', createModal);
+pesquisar.addEventListener('input', (e) => {
+    render(e.target.value);
+});
 
-btnCriar.addEventListener('click', createModalCriar)
-
-function createModalCriar() {
-    let modalCriar, divBox, boxHeader, boxContent, h3, p;
-    let inputId, inputName, inputDescricao, btnCriarCurso;
-
-    modalCriar = document.createElement('div');
-    divBox = document.createElement('div');
-    boxHeader = document.createElement('div');
-    boxContent = document.createElement('div');
-    h3 = document.createElement('h3');
-    p = document.createElement('p');
-
-    h3.innerText = 'Criar curso';
-    p.innerText = 'FECHAR';
-
-    inputId = document.createElement('input');
-    inputName = document.createElement('input');
-    inputDescricao = document.createElement('textarea');
-    btnCriarCurso = document.createElement('button');
-
-    inputId.value = generateId();
-    inputId.setAttribute('disabled', 'disabled');
-    inputName.setAttribute('placeholder', 'Nome do curso');
-    inputDescricao.setAttribute('placeholder', 'Descrição');
-    inputDescricao.setAttribute('rows', 7);
-    inputDescricao.style.resize = 'none';
-    inputDescricao.style.overflow = 'auto';
-    btnCriarCurso.innerText = 'Criar';
-
-    btnCriarCurso.addEventListener('click', () => {
-        criarCurso(inputId, inputName, inputDescricao);
-    });
-
-    modalCriar.classList.add('modalCriar');
-    divBox.classList.add('box');
-    boxHeader.classList.add('box-header');
-    boxContent.classList.add('box-content');
-
-    p.addEventListener('click', () => {
-        container.removeChild(modalCriar);
-    })
-
-    boxContent.append(inputId);
-    boxContent.append(inputName);
-    boxContent.append(inputDescricao);
-    boxContent.append(btnCriarCurso);
-
-    boxHeader.append(h3);
-    boxHeader.append(p);
-
-    divBox.append(boxHeader);
-    divBox.append(boxContent);
-
-    modalCriar.append(divBox)
-    container.append(modalCriar);
+//  Funções 
+function generateId() {
+    return Math.floor(Math.random() * 15000);
 }
-
 function criarCurso(inputId, inputName, inputDescricao) {
     if (inputId.value != '' &&
         inputName.value != '' &&
@@ -92,6 +41,7 @@ function criarCurso(inputId, inputName, inputDescricao) {
     render();
 }
 
+//  Gerenciando HTML 
 function render(data) {
     containerCursos.innerHTML = '';
     let cont = 0;
@@ -116,7 +66,60 @@ function render(data) {
         containerCursos.innerText = 'Nenhum curso encontrado.';
     }
 }
+function createModal() {
+    let modal, box, boxHeader, boxContent, h3, p;
+    let inputId, inputName, inputDescricao, btnCriarCurso;
 
+    modal = createElement('div');
+    box = createElement('div');
+    boxHeader = createElement('div');
+    boxContent = createElement('div');
+    h3 = createElement('h3');
+    p = createElement('p');
+    inputId = createElement('input');
+    inputName = createElement('input');
+    inputDescricao = createElement('textarea');
+    btnCriarCurso = createElement('button');
+
+    h3.innerText = 'Criar curso';
+    p.innerText = 'FECHAR';
+    inputId.value = generateId();
+    inputId.setAttribute('disabled', 'disabled');
+    inputName.setAttribute('placeholder', 'Nome do curso');
+    inputDescricao.setAttribute('placeholder', 'Descrição');
+    inputDescricao.setAttribute('rows', 7);
+    inputDescricao.style.resize = 'none';
+    inputDescricao.style.overflow = 'auto';
+    btnCriarCurso.innerText = 'Criar';
+
+    btnCriarCurso.addEventListener('click', (e) => {
+        criarCurso(inputId, inputName, inputDescricao);
+        e.target.parentNode.parentNode.parentNode.remove();
+    });
+
+    p.addEventListener('click', () => {
+        container.removeChild(modal);
+    })
+
+    modal.classList.add('modal');
+    box.classList.add('box');
+    boxHeader.classList.add('box-header');
+    boxContent.classList.add('box-content');
+
+    boxContent.append(inputId);
+    boxContent.append(inputName);
+    boxContent.append(inputDescricao);
+    boxContent.append(btnCriarCurso);
+    boxHeader.append(h3);
+    boxHeader.append(p);
+    box.append(boxHeader);
+    box.append(boxContent);
+    modal.append(box)
+    container.append(modal);
+}
+function createElement(element) {
+    return document.createElement(element);
+}
 function createCard(TITULO, DESCRICAO) {
     let card = document.createElement('li');
     card.classList.add('card');
@@ -165,7 +168,9 @@ function createCard(TITULO, DESCRICAO) {
     editar.classList.add('editar');
 
     excluir.addEventListener('click', (e) => {
-        e.target.parentNode.parentNode.remove();
+        let targetToRemove = e.target.parentNode.parentNode;
+        targetToRemove.style.opacity = '0';
+        setTimeout(() => { targetToRemove.remove() }, 300);
         meusCursos.splice(meusCursos.findIndex(curso => curso.titulo == TITULO && curso.descricao == DESCRICAO), 1);
         localStorage.setItem('meusCursos', JSON.stringify(meusCursos));
     })
@@ -180,7 +185,11 @@ function createCard(TITULO, DESCRICAO) {
     return card;
 }
 
-
-function generateId() {
-    return Math.floor(Math.random() * 15000);
-}
+/*
+    FALTA IMPLEMENTAR
+        -> Botão de Editar card existente
+        -> Clicar no card e ver aparecer um modal com informações detalhadas
+        -> Adicionar fotos em cada card
+        -> Poder ver o id de cada card, além de poder adicionar o professor
+        -> Mudar para um estilo mais bonito
+*/

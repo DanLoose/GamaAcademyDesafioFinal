@@ -2,6 +2,7 @@ body {
     display: flex;
     justify-content: center;
     font-family: Arial, Helvetica, sans-serif;
+    user-select: none;
 }
 
 .container {
@@ -22,6 +23,7 @@ body {
 
 .header>button {
     height: 30px;
+    cursor: pointer;
 }
 
 
@@ -32,23 +34,13 @@ ul {
     width: 100%;
 }
 
-.container>form>input {
+.container>input {
     width: 400px;
     padding: 10px;
     outline: none;
     border: 1px solid black;
     margin: 10px;
     border-radius: 5px;
-}
-
-form>button {
-    padding: 5px;
-    background-color: cornflowerblue;
-    border: 1px solid black;
-}
-
-form>button:hover {
-    background-color: rgb(155, 183, 235);
 }
 
 .card {
@@ -92,9 +84,10 @@ form>button:hover {
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 
-.modalCriar {
+.modal {
     display: flex;
     background-color: rgba(0, 0, 0, 0.219);
     position: absolute;
@@ -106,7 +99,7 @@ form>button:hover {
     align-items: center;
 }
 
-.modalCriar>.box {
+.modal>.box {
     max-width: 500px;
     width: 100%;
     background-color: white;
@@ -140,4 +133,10 @@ form>button:hover {
 
 .box-content>* {
     margin-top: 5px;
+}
+
+.card {
+    opacity: 1;
+    -webkit-transition: opacity 300ms linear;
+    transition: opacity 300ms linear;
 }
