@@ -27,3 +27,7 @@ Instale as dependências
 Teste a aplicação
 `npm start` 
 
+## Projeto em execução: 
+
+![demoDesafioFinal](./public/assets/demoDesafioFinal.gif)
+
